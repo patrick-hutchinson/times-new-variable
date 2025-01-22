@@ -53,9 +53,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       {/* <div id={styles.curtain}></div> */}
-      <button id={styles["start-demo"]} onClick={(e) => handleOrienationPermission(e)}>
-        enter
-      </button>
+      {!isRunning && <button onClick={(e) => handleOrienationPermission(e)}>enter</button>}
       <div className={styles.title}>
         Times New Roman <br /> Variable
       </div>
