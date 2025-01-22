@@ -18,5 +18,5 @@ body {
   padding: 0;
 
   font-family: TimesNewVariable;
-  /* font-variation-settings: "curs" var(--cursAxis), "wght" var(--wghtAxis); */
+  font-variation-settings: "curs" var(--cursAxis), "wght" var(--wghtAxis);
 }

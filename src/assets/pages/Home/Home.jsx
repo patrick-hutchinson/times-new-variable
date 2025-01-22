@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import styles from "./Home.module.css";
 
 export default function Home() {
-  let textRef = useRef();
   let [beta, setBeta] = useState(0);
   let [gamma, setGamma] = useState(0);
   let [alpha, setAlpha] = useState(0);
@@ -39,8 +38,9 @@ export default function Home() {
   }
 
   useEffect(() => {
-    textRef.current.style["font-variation-settings"] = `curs ${Math.round(beta) + 200}, wght ${Math.round(gamma) + 200}`;
-  }, [textRef, textRef.current, beta, gamma]);
+    document.querySelector(":root").style.setProperty("--cursAxis", Math.round(beta) + 200);
+    document.querySelector(":root").style.setProperty("--wghtAxis", Math.round(gamme) + 200);
+  }, [beta, gamma]);
 
   return (
     <>
@@ -48,9 +48,7 @@ export default function Home() {
       <button id={styles["start-demo"]} onClick={(e) => handleOrienationPermission(e)}>
         enter
       </button>
-      <div className={styles.title} ref={textRef}>
-        Times New Variable
-      </div>
+      <div className={styles.title}>Times New Variable</div>
       {alpha !== 0 && (
         <div>
           {Math.round(alpha)}, {Math.round(beta)}, {Math.round(gamma)}
