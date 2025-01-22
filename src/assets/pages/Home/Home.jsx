@@ -25,13 +25,13 @@ export default function Home() {
     // if (DeviceMotionEvent) DeviceMotionEvent.requestPermission();
     if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function") DeviceMotionEvent.requestPermission();
 
-    // if (isRunning) {
-    //   window.removeEventListener("deviceorientation", handleOrientation);
-    //   setIsRunning(false);
-    // } else {
-    window.addEventListener("deviceorientation", handleOrientation);
-    //   setIsRunning(true);
-    // }
+    if (isRunning) {
+      window.removeEventListener("deviceorientation", handleOrientation);
+      setIsRunning(false);
+    } else {
+      window.addEventListener("deviceorientation", handleOrientation);
+      setIsRunning(true);
+    }
 
     // curtain.style.background = "blue";
   }
@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <>
-      <div id={styles.curtain}></div>
+      {/* <div id={styles.curtain}></div> */}
       <button id={styles["start-demo"]} onClick={(e) => handleOrienationPermission(e)}>
         enter
       </button>
