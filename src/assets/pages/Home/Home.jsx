@@ -40,7 +40,7 @@ export default function Home() {
 
   useEffect(() => {
     textRef.current.style.fontVariationSettings = `curs ${beta}, wght ${gamma};`;
-  }, [textRef, textRef.current]);
+  }, [textRef, textRef.current, beta, gamma]);
 
   return (
     <>
