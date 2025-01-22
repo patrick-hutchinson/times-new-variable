@@ -17,10 +17,12 @@ export default function Home() {
     setBeta(event.beta);
     setGamma(event.gamma);
     setAlpha(event.alpha);
+  }
 
+  useEffect(() => {
     setCappedBeta(Math.min(400, Math.max(0, Math.round(beta * 5) + 200)));
     setCappedGamma(Math.min(400, Math.max(0, Math.round(gamma * 5) + 200)));
-  }
+  }, [beta, gamma, alpha]);
 
   function handleOrienationPermission(e) {
     //Skip the functionality of non-orientation devices
