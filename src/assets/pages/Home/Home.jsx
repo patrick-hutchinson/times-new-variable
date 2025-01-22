@@ -39,7 +39,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    textRef.current.style.fontVariationSettings = `curs ${beta + 200}, wght ${gamma + 200}`;
+    textRef.current.style["font-variation-settings"] = `curs ${beta + 200}, wght ${gamma + 200}`;
   }, [textRef, textRef.current, beta, gamma]);
 
   return (
