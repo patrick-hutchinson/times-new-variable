@@ -38,11 +38,11 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const cappedBeta = Math.min(400, Math.max(0, Math.round(gamma * 5) + 200));
-    const cappedGamma = Math.min(400, Math.max(0, Math.round(beta * 5) + 200));
+    const cappedBeta = Math.min(400, Math.max(0, Math.round(beta * 5) + 200));
+    const cappedGamma = Math.min(400, Math.max(0, Math.round(gamma * 5) + 200));
 
-    document.querySelector(":root").style.setProperty("--cursAxis", cappedBeta);
-    document.querySelector(":root").style.setProperty("--wghtAxis", cappedGamma);
+    document.querySelector(":root").style.setProperty("--cursAxis", cappedGamma);
+    document.querySelector(":root").style.setProperty("--wghtAxis", cappedBeta);
   }, [beta, gamma]);
 
   return (
@@ -54,7 +54,7 @@ export default function Home() {
       <div className={styles.title}>Times</div>
       {alpha !== 0 && (
         <div>
-          {Math.round(alpha)}, {Math.round(beta)}, {Math.round(gamma)}
+          `${cappedBeta}, ${cappedGamma}`
         </div>
       )}
     </>
