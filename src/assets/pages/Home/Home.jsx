@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import styles from "./Home.module.css";
 
 export default function Home() {
+  let textRef = useRef();
   let [beta, setBeta] = useState(0);
   let [gamma, setGamma] = useState(0);
   let [alpha, setAlpha] = useState(0);
@@ -21,18 +22,21 @@ export default function Home() {
     if (typeof DeviceOrientationEvent === "undefined" || !DeviceOrientationEvent.requestPermission) return;
 
     // Request permission for iOS 13+ devices
+    // if (DeviceMotionEvent) DeviceMotionEvent.requestPermission();
     if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function") DeviceMotionEvent.requestPermission();
 
-    if (isRunning) {
-      window.removeEventListener("deviceorientation", handleOrientation);
-      setIsRunning(false);
-    } else {
-      window.addEventListener("deviceorientation", handleOrientation);
-      setIsRunning(true);
-    }
+    // if (isRunning) {
+    //   window.removeEventListener("deviceorientation", handleOrientation);
+    //   setIsRunning(false);
+    // } else {
+    window.addEventListener("deviceorientation", handleOrientation);
+    //   setIsRunning(true);
+    // }
 
     // curtain.style.background = "blue";
   }
+
+  textRef.current.style.fontVariationSettings = `curs ${beta}, wght ${gamma};`;
 
   return (
     <>
@@ -40,7 +44,9 @@ export default function Home() {
       <button id={styles["start-demo"]} onClick={(e) => handleOrienationPermission(e)}>
         enter
       </button>
-      {/* <div className={styles.title}>Times New Variable</div> */}
+      <div className={styles.title} ref={textRef}>
+        Times New Variable
+      </div>
     </>
   );
 }
