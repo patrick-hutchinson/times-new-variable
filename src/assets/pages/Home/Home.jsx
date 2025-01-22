@@ -51,6 +51,11 @@ export default function Home() {
       <div className={styles.title} ref={textRef}>
         Times New Variable
       </div>
+      {alpha !== 0 && (
+        <div>
+          {alpha}, {beta}, {gamma}
+        </div>
+      )}
     </>
   );
 }
