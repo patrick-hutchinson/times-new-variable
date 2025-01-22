@@ -38,8 +38,11 @@ export default function Home() {
   }
 
   useEffect(() => {
-    document.querySelector(":root").style.setProperty("--cursAxis", Math.round(beta) + 200);
-    document.querySelector(":root").style.setProperty("--wghtAxis", Math.round(gamma) + 200);
+    const cappedBeta = Math.min(400, Math.max(0, Math.round(beta * 5) + 200));
+    const cappedGamma = Math.min(400, Math.max(0, Math.round(gamma * 5) + 200));
+
+    document.querySelector(":root").style.setProperty("--cursAxis", cappedBeta);
+    document.querySelector(":root").style.setProperty("--wghtAxis", cappedGamma);
   }, [beta, gamma]);
 
   return (
