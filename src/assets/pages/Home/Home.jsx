@@ -51,13 +51,13 @@ export default function Home() {
   }, [beta, gamma]);
 
   return (
-    <>
+    <div className={styles.container}>
       {/* <div id={styles.curtain}></div> */}
       <button id={styles["start-demo"]} onClick={(e) => handleOrienationPermission(e)}>
         enter
       </button>
       <div className={styles.title}>Times</div>
       {alpha !== 0 && <div>{`${cappedBeta}, ${cappedGamma}`}</div>}
-    </>
+    </div>
   );
 }
