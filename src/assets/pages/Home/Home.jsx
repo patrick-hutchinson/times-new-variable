@@ -36,7 +36,9 @@ export default function Home() {
     // curtain.style.background = "blue";
   }
 
-  textRef.current.style.fontVariationSettings = `curs ${beta}, wght ${gamma};`;
+  useEffect(() => {
+    textRef.current.style.fontVariationSettings = `curs ${beta}, wght ${gamma};`;
+  }, [textRef, textRef.current]);
 
   return (
     <>
