@@ -20,8 +20,8 @@ export default function Home() {
   }
 
   useEffect(() => {
-    setCappedBeta(Math.min(400, Math.max(0, Math.round(beta * 10) - 250)));
-    setCappedGamma(Math.min(400, Math.max(0, Math.round(gamma * 5) + 0)));
+    setCappedBeta(Math.min(400, Math.max(0, Math.round(beta * 7.5) - 250)));
+    setCappedGamma(Math.min(400, Math.max(0, Math.round(gamma * 6.5) + 0)));
   }, [beta, gamma, alpha]);
 
   function handleOrienationPermission(e) {
