@@ -39,7 +39,7 @@ export default function Home() {
 
   useEffect(() => {
     document.querySelector(":root").style.setProperty("--cursAxis", Math.round(beta) + 200);
-    document.querySelector(":root").style.setProperty("--wghtAxis", Math.round(gamme) + 200);
+    document.querySelector(":root").style.setProperty("--wghtAxis", Math.round(gamma) + 200);
   }, [beta, gamma]);
 
   return (
