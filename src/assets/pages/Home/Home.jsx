@@ -19,7 +19,9 @@ export default function Home() {
 
   function handleOrienationPermission(e) {
     //Skip the functionality of non-orientation devices
-    if (typeof DeviceOrientationEvent === "undefined" || !DeviceOrientationEvent.requestPermission) return;
+    if (window.innerWidth > 737) {
+      if (typeof DeviceOrientationEvent === "undefined" || !DeviceOrientationEvent.requestPermission) return;
+    }
 
     // Request permission for iOS 13+ devices
     // if (DeviceMotionEvent) DeviceMotionEvent.requestPermission();
