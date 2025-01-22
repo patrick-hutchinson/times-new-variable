@@ -56,7 +56,9 @@ export default function Home() {
       <button id={styles["start-demo"]} onClick={(e) => handleOrienationPermission(e)}>
         enter
       </button>
-      <div className={styles.title}>Times</div>
+      <div className={styles.title}>
+        Times New Roman <br /> Variable
+      </div>
       {alpha !== 0 && <div>{`${cappedBeta}, ${cappedGamma}`}</div>}
     </div>
   );

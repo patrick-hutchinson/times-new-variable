@@ -2,7 +2,6 @@
   width: 100vw;
   height: 100vh;
   position: relative;
-  background: red;
 }
 .title {
   font-size: 80px;
@@ -12,6 +11,10 @@
   transform: translate(-50%, -50%);
   width: fit-content;
   height: fit-content;
+
+  text-align: center;
+  font-size: 32px;
+  line-height: 1;
 }
 
 #curtain {
@@ -21,6 +24,5 @@
   top: 0px;
   left: 0px;
 
-  background: red;
   z-index: -1;
 }
