@@ -55,11 +55,7 @@ export default function Home() {
         enter
       </button>
       <div className={styles.title}>Times</div>
-      {alpha !== 0 && (
-        <div>
-          `${cappedBeta}, ${cappedGamma}`
-        </div>
-      )}
+      {alpha !== 0 && <div>{`${cappedBeta}, ${cappedGamma}`}</div>}
     </>
   );
 }
