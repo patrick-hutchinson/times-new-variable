@@ -39,7 +39,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    textRef.current.style["font-variation-settings"] = `curs ${beta + 200}, wght ${gamma + 200}`;
+    textRef.current.style["font-variation-settings"] = `curs ${Math.round(beta) + 200}, wght ${Math.round(gamma) + 200}`;
   }, [textRef, textRef.current, beta, gamma]);
 
   return (
@@ -53,7 +53,7 @@ export default function Home() {
       </div>
       {alpha !== 0 && (
         <div>
-          {alpha}, {beta}, {gamma}
+          {Math.round(alpha)}, {Math.round(beta)}, {Math.round(gamma)}
         </div>
       )}
     </>
