@@ -6,6 +6,9 @@ import styles from "./Home.module.css";
 export default function Home() {
   let [beta, setBeta] = useState(0);
   let [gamma, setGamma] = useState(0);
+
+  let [cappedBeta, setCappedBeta] = useState(0);
+  let [cappedGamma, setCappedGamma] = useState(0);
   let [alpha, setAlpha] = useState(0);
 
   let [isRunning, setIsRunning] = useState(false);
@@ -14,6 +17,9 @@ export default function Home() {
     setBeta(event.beta);
     setGamma(event.gamma);
     setAlpha(event.alpha);
+
+    setCappedBeta(Math.min(400, Math.max(0, Math.round(beta * 5) + 200)));
+    setCappedGamma(Math.min(400, Math.max(0, Math.round(gamma * 5) + 200)));
   }
 
   function handleOrienationPermission(e) {
@@ -38,9 +44,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const cappedBeta = Math.min(400, Math.max(0, Math.round(beta * 5) + 200));
-    const cappedGamma = Math.min(400, Math.max(0, Math.round(gamma * 5) + 200));
-
     document.querySelector(":root").style.setProperty("--cursAxis", cappedGamma);
     document.querySelector(":root").style.setProperty("--wghtAxis", cappedBeta);
   }, [beta, gamma]);
