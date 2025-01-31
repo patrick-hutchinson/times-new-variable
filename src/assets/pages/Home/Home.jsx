@@ -16,7 +16,12 @@ export default function Home() {
   function handleOrientation(event) {
     setBeta(event.beta);
     setGamma(event.gamma);
-    setAlpha(event.alpha);
+    // setAlpha(event.alpha);
+  }
+
+  function handleMouseMove(event) {
+    setBeta(event.clientX);
+    setGamma(event.clientY);
   }
 
   useEffect(() => {
@@ -41,8 +46,6 @@ export default function Home() {
       window.addEventListener("deviceorientation", handleOrientation);
       setIsRunning(true);
     }
-
-    // curtain.style.background = "blue";
   }
 
   useEffect(() => {
@@ -50,13 +53,14 @@ export default function Home() {
     document.querySelector(":root").style.setProperty("--wghtAxis", cappedBeta);
   }, [beta, gamma]);
 
+  function handleChange(e) {
+    console.log(e);
+  }
+
   return (
-    <div className={styles.container}>
-      {/* <div id={styles.curtain}></div> */}
+    <div className={styles.container} onMouseMove={(e) => handleMouseMove(e)}>
       {!isRunning && <button onClick={(e) => handleOrienationPermission(e)}>enter</button>}
-      <div className={styles.title}>
-        Times New Roman <br /> Variable
-      </div>
+      <input className={styles.title} type="text" value="Times New Variable" onChange={handleChange}></input>
       {/* {alpha !== 0 && <div>{`${cappedBeta}, ${cappedGamma}`}</div>} */}
     </div>
   );
