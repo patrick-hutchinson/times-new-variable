@@ -2,41 +2,26 @@ import React from "react";
 import { useEffect, useState, useRef } from "react";
 
 import styles from "./Home.module.css";
+import Options from "./components/Options";
 
 export default function Home() {
-  let [beta, setBeta] = useState(0);
-  let [gamma, setGamma] = useState(0);
-
-  let [cappedBeta, setCappedBeta] = useState(0);
-  let [cappedGamma, setCappedGamma] = useState(0);
-  let [alpha, setAlpha] = useState(0);
-
   let [isRunning, setIsRunning] = useState(false);
 
-  function handleOrientation(event) {
-    setBeta(event.beta);
-    setGamma(event.gamma);
-    // setAlpha(event.alpha);
-  }
+  let [cappedX, setCappedX] = useState(0);
+  let [cappedY, setCappedY] = useState(0);
 
-  function handleMouseMove(event) {
-    setBeta(event.clientX);
-    setGamma(event.clientY);
-  }
+  let [text, setText] = useState("Times New Variable");
 
-  useEffect(() => {
-    setCappedBeta(Math.min(400, Math.max(0, Math.round(beta * 7.5) - 250)));
-    setCappedGamma(Math.min(400, Math.max(0, Math.round(gamma * 6.5) + 0)));
-  }, [beta, gamma, alpha]);
+  let isDesktop = window.innerWidth > 737;
 
   function handleOrienationPermission(e) {
     //Skip the functionality of non-orientation devices
-    if (window.innerWidth > 737) {
+
+    if (isDesktop) {
       if (typeof DeviceOrientationEvent === "undefined" || !DeviceOrientationEvent.requestPermission) return;
     }
 
     // Request permission for iOS 13+ devices
-    // if (DeviceMotionEvent) DeviceMotionEvent.requestPermission();
     if (DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function") DeviceMotionEvent.requestPermission();
 
     if (isRunning) {
@@ -48,20 +33,35 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
-    document.querySelector(":root").style.setProperty("--cursAxis", cappedGamma);
-    document.querySelector(":root").style.setProperty("--wghtAxis", cappedBeta);
-  }, [beta, gamma]);
+  function handleOrientation(event) {
+    setCappedX(Math.min(400, Math.max(0, Math.round(event.gamma * 6.5) + 0)));
+    setCappedY(Math.min(400, Math.max(0, Math.round(event.beta * 7.5) - 250)));
+  }
+
+  function handleMouseMove(event) {
+    if (!isDesktop) return;
+    setCappedX((event.clientX / window.innerWidth) * 400 * 2 - 400);
+    setCappedY((event.clientY / window.innerHeight) * 400);
+  }
 
   function handleChange(e) {
-    console.log(e);
+    setText(e.target.value); // Updates state with the new input value
   }
+
+  useEffect(() => {
+    document.querySelector(":root").style.setProperty("--cursAxis", cappedX);
+    document.querySelector(":root").style.setProperty("--wghtAxis", cappedY);
+  }, [cappedX, cappedY]);
 
   return (
     <div className={styles.container} onMouseMove={(e) => handleMouseMove(e)}>
-      {!isRunning && <button onClick={(e) => handleOrienationPermission(e)}>enter</button>}
-      <input className={styles.title} type="text" value="Times New Variable" onChange={handleChange}></input>
-      {/* {alpha !== 0 && <div>{`${cappedBeta}, ${cappedGamma}`}</div>} */}
+      {!isRunning && !isDesktop && <button onClick={(e) => handleOrienationPermission(e)}>enter</button>}
+      {/* <input className={styles.title} type="text" value={text} onChange={(e) => handleChange(e)}></input> */}
+      <div className={styles.title} contentEditable="true">
+        {text}
+      </div>
+      {/* {cappedY !== 0 && <div>{`${cappedY}, ${cappedX}`}</div>} */}
+      <Options />
     </div>
   );
 }

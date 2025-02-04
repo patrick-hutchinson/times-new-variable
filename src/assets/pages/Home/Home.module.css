@@ -4,7 +4,6 @@
   position: relative;
 }
 .title {
-  font-size: 80px;
   position: relative;
   top: 50%;
   left: 50%;
@@ -13,19 +12,18 @@
   height: fit-content;
 
   text-align: center;
-  font-size: 32px;
-  line-height: 1;
+  font-size: var(--fontSize);
+  line-height: var(--lineHeight);
+  letter-spacing: var(--letterSpacing);
 
   font-family: TimesNewVariable;
   font-variation-settings: "curs" var(--cursAxis), "wght" var(--wghtAxis);
+  overflow: visible;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
-#curtain {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-
-  z-index: -1;
+.title:focus {
+  border: 0;
+  outline: 0;
 }
